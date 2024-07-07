@@ -1,4 +1,4 @@
- import axios from "axios";
+import axios from "axios";
 import {
   COUNSELOR_LOGIN_SUCCESS,
   COUNSELOR_LOGIN_REQUEST,

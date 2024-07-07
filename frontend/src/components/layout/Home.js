@@ -1,7 +1,39 @@
-import React from 'react';
+import React, { Fragment, useEffect, useState } from 'react'
+import MetaData from './MetaData'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { clearErrors } from '../../actions/adminAction';
+
+
 
 const Home = () => {
-return (
+  const navigate = useNavigate();
+  
+  const dispatch = useDispatch();
+  const {isAuthenticated,error, loading}= useSelector(state=>state.auth);
+  const {isAuthenticatedCounselor}= useSelector(state=>state.Counselor);
+  useEffect(()=>{
+      if(isAuthenticated) {
+        navigate('/admin');
+      }
+      if(isAuthenticatedCounselor)
+      {
+        navigate('/counselor');
+      }
+      if(error){
+        
+          dispatch(clearErrors());
+          
+      }
+  },[dispatch,isAuthenticated,error]);
+
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleHover = () => {
+    setIsHovered(!isHovered);
+  };
+  
+  return (
     <Fragment>
       <div className="home">
       

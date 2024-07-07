@@ -1,9 +1,40 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import './App.css';
-import Home from "/components/Layout/Home";
-import ProtectedRoute from "./routes/ProtectedRoute";
 
+import React, { useEffect } from "react";
+import Header from './components/Layout/Header';
+import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./components/Layout/Home";
+import Admin from "./components/Admin/Admin";
+import Login from "./components/Admin/index";
+import { useSelector } from "react-redux";
+import store from "./store";
+import { loadUser } from "./actions/adminAction";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import PendingRequest from "./components/Admin/PendingRequest";
+import Register from "./components/Counselor/Register";
+import LoginCounselor from "./components/Counselor/Login";
+import Counselor from "./components/Counselor/Counselor";
+import { counselorLoadUser } from "./actions/counselorAction";
+import About from './components/Layout/About';
+import Faqs from "./components/Layout/Faqs";
+import UnderProcess from "./components/Counselor/UnderProcess";
+import User from "./components/User/User";
+import LoginCorner from "./components/Layout/LoginCorner";
+import { CounselorProfile } from "./components/Admin/CounselorProfile";
+import CounselorList from "./components/Admin/CounselorList";
+import Response from "./components/Admin/Response";
+import Articles from "./components/Layout/Articles";
+import Volunteer from "./components/User/Volunteer";
+import Volunteers from "./components/Admin/Vounteers";
+import MyProfile from "./components/Counselor/MyProfile";
 const App = () => {
+  const {isAuthenticated} = useSelector(state=> state.auth);
+ const {isAuthenticatedCounselor} = useSelector(state=>state.Counselor);
+
+  useEffect(()=>{
+    store.dispatch(loadUser());
+    store.dispatch(counselorLoadUser());
+  },[]);
  return (
   
  
