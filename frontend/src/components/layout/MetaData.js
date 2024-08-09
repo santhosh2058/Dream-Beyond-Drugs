@@ -25,4 +25,4 @@ const MetaData = ({title}) => {
   )
 }
 
-export default MetaData
+export default MetaData;
